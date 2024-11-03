@@ -8,7 +8,7 @@ import {} from "dotenv/config";
 import * as jose from "jose";
 
 const app = express();
-
+// REQUIRES .env file with specific DB_URI, SECRET_KEY and IP in order to work
 let playerSocket;
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -21,10 +21,6 @@ const io = new Server(server, {
   cors: {
     origin: "http://localhost:3000",
   },
-});
-
-app.get("/login", (req, res) => {
-  res.send("<h1>LOGIN PAGE!</h1>");
 });
 
 app.post("/login", async (req, res) => {
@@ -42,6 +38,7 @@ app.post("/login", async (req, res) => {
       .setExpirationTime("6h")
       .sign(secret);
     res.status(200).json({ success: true, token: token, username: username });
+    res.redirect('/')
   } else {
     res.status(401).json({ success: false, reason: "User not Found" });
   }
@@ -63,6 +60,7 @@ app.post("/register", async (req, res) => {
       .setExpirationTime("6h")
       .sign(secret);
     res.status(200).json({ success: true, token: token, username: username });
+    res.redirect('/')
   } else {
     res.status(401).json({ success: false, reason: "User already exists" });
   }
@@ -94,7 +92,7 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(PORT, process.env.EDUROAM_IP, () => {
+server.listen(PORT, () => {
   console.log(`server is now running at ${PORT}`);
 });
 
