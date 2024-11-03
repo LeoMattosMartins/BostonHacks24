@@ -8,6 +8,7 @@ import {} from 'dotenv/config'
 
 const app = express()
 
+let playerSocket;
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -15,7 +16,11 @@ app.use(bodyParser.json());
 const server = createServer(app)
 const PORT = 5000
 
-const io = new Server(server)
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000"
+  }
+})
 
 // middleware
 // app.use("/", (req, res, next) => {
@@ -28,10 +33,13 @@ app.post("/", (req, res) => {
     // res.send(`Hello world from '/'!`)
     console.log(`POST RECEIVED FROM CLIENT, ${req.body.count}`)
     res.send("Response Received from '/'")
+    playerSocket.emit('rep', req.body.count)
 });
 
 io.on('connection', (socket) => {
     console.log(`User ${socket.id} connected`)
+    playerSocket = socket
+    playerSocket.emit('rep', 2)
     socket.on('disconnect', () => {
       console.log(`User ${socket.id} disconnected, goodby`)
     })

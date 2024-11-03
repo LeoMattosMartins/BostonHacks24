@@ -1,15 +1,9 @@
-import { Canvas, Image, Text } from "@bucky24/react-canvas/build/main";
-import { React, useRef, useEffect } from "react";
+import { Canvas, Image } from "@bucky24/react-canvas/build/main";
 
 
 
 
-export default function Spaceship() {
-
-    function makeRep(){
-
-
-    }
+export default function Spaceship(numReps) {
 
 
     return (
