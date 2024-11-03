@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import { socket } from "./socket.js";
 // import Profile from './components/Profile.js';
-<<<<<<< HEAD
 import SlidingImageCanvas from './components/move.js'
-=======
-// import Spaceship from './components/Spaceship.js';
-// import SlidingImageCanvas from "./components/move.js";
-import Register from "./components/Register.js"
->>>>>>> frontend-auth
 
 function App() {
   const [numReps, setNumReps] = useState(0);
