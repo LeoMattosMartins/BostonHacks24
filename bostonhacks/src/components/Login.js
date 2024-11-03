@@ -14,8 +14,9 @@ export default function Login() {
         if (!response.ok) {
             throw new Error(`Error with error code ${response.status}, reason: ${response.reason}`)
         }
-        const token = await response.json()
-        localStorage.setItem('token', token.token)
+        const items = await response.json()
+        localStorage.setItem('token', items.token)
+        localStorage.setItem('username', items.username)
         console.log("SUCCESS!")
 
     } catch(error) {
