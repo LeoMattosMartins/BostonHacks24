@@ -36,8 +36,8 @@ function App() {
   const handleKeyPress = (event) => {
     if (event.code === "Space") {
       setPosition((prev) => ({
-        x: prev.x < 81 ? prev.x + 89 / 20 : -8, // replace -8 with some kind of success screen?
-        y: prev.y > 10 ? prev.y - 23 / 20 : 33,
+        x: prev.x < 81 ? prev.x + numReps / 20 : -8, // replace -8 with some kind of success screen?
+        y: prev.y > 10 ? prev.y - numReps / 20 : 33,
       }));
     }
   };

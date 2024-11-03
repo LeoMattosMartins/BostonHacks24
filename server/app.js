@@ -169,8 +169,8 @@ async function editUser(spaceship, highscore, username) {
     const filter = { username: username };
     const update = {
       $set: {
-        spaceship: spaceship, // Replace with the field name and new value
-        highscore: highscore, // You can add more fields here
+        spaceship: spaceship,
+        highscore: highscore,
       },
     };
     await collection.updateOne(filter, update);
