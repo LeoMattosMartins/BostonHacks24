@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { socket } from './socket.js'
 // import Profile from './components/Profile.js';
-import Spaceship from './components/Spaceship.js';
+// import Spaceship from './components/Spaceship.js';
+import SlidingImageCanvas from './components/move.js'
 
 function App() {
     const [numReps, setNumReps] = useState(0)
@@ -24,7 +25,7 @@ function App() {
         }
     }, [])
     return (
-        <Spaceship numReps={numReps}></Spaceship>
+        <SlidingImageCanvas position={numReps}></SlidingImageCanvas>
     );
 }
 
